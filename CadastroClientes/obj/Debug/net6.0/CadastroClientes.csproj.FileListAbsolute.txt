@@ -1,5 +1,0 @@
-C:\Users\Abílio\Documents\CadastroClientes\obj\Debug\net6.0\CadastroClientes.csproj.AssemblyReference.cache
-C:\Users\Abílio\Documents\CadastroClientes\obj\Debug\net6.0\CadastroClientes.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Abílio\Documents\CadastroClientes\obj\Debug\net6.0\CadastroClientes.AssemblyInfoInputs.cache
-C:\Users\Abílio\Documents\CadastroClientes\obj\Debug\net6.0\CadastroClientes.AssemblyInfo.cs
-C:\Users\Abílio\Documents\CadastroClientes\obj\Debug\net6.0\CadastroClientes.csproj.CoreCompileInputs.cache
