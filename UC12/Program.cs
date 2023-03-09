@@ -8,7 +8,7 @@ using UC12.Classes;
 
 
 //Método construtor
-PessoaFisica novaPF = new PessoaFisica();
+/* PessoaFisica novaPF = new PessoaFisica();
 Endereco novoEndPf = new Endereco();
 
 
@@ -33,7 +33,7 @@ Data de nascimento: {novaPF.dataNasc}
 Endereço: {novoEndPf.logradouro} , {novoEndPf.numero} , {novoEndPf.complemento} , {novoEndPf.endComercial}
 Maior de idade: {novaPF.ValidarDataNasc(novaPF.dataNasc)}
 
-");
+"); */
 
 
 
@@ -81,7 +81,36 @@ Maior de idade: {novaPF.ValidarDataNasc(novaPF.dataNasc)}
 //----------------------------------------Pessoa Jurídica----------------------------------------------------------------------
 
 
-//PessoaJuridica novaPj = new PessoaJuridica();
+PessoaJuridica novaPj = new PessoaJuridica();
+Endereco novoEndPj = new Endereco();
+
+novaPj.nome = "Abílio Viana Corps";
+novaPj.cnpj = "42.653.716/0001-38";
+novaPj.rendimento = 200.000f;
+
+novoEndPj.logradouro = "Tv. Colômbia";
+novoEndPj.numero = 2872;
+novoEndPj.complemento = "Empresa Senai Informática";
+novoEndPj.endComercial = true;
+
+novaPj.endereco = novoEndPj;
+
+Console.WriteLine(@$"
+
+Nome da razão social: {novaPj.nome}
+CNPJ: {novaPj.cnpj} - Válido: {novaPj.ValidarCnpj(novaPj.cnpj)}
+Endereço: {novoEndPj.logradouro} , {novoEndPj.numero}
+Complemento: {novoEndPj.complemento} 
+Endereço comercial: {novoEndPj.endComercial}
+");
+
+
+//Console.WriteLine(novaPj.ValidarCnpj("42.653.716/0001-38"));
+
+
+
+
+
 //float x = novaPj.rendimento = 16600.3f;
 //Console.WriteLine(novaPj.CalcularImposto(x));
 
