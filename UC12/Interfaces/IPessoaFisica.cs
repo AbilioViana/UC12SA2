@@ -7,6 +7,6 @@ namespace UC12.Interfaces
 {
     public interface IPessoaFisica
     {
-        bool ValidadarDataNasc(DateTime dataNasc);
+        bool ValidarDataNasc(DateTime dataNasc);
     }
 }

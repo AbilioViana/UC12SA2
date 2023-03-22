@@ -5,26 +5,22 @@ using System.Threading.Tasks;
 
 namespace UC12.Classes
 {
-    public static class Utils
+     public static class Utils
     {
-
         public static void BarraCarregamento(string textoBarra)
         {
-            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write($"{textoBarra}");
-
-            for (var contador = 0; contador < 6; contador++)
+            for (var contador = 0; contador < 3; contador++)
             {
                 Thread.Sleep(500);
-                Console.Write(".");
+                Console.Write($".");
             }
-
-
-
-
+            Console.ResetColor();
+            Thread.Sleep(500);
             Console.Clear();
         }
-
 
     }
 }

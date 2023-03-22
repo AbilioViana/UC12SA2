@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace UC12.Interfaces
 {
+    
     public interface IPessoaJuridica
     {
         bool ValidarCnpj(string cnpj);

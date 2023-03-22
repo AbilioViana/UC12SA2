@@ -1,243 +1,248 @@
-﻿// See https://aka.ms/new-console-template for more information
-//Console.WriteLine("Hello, World!");
+﻿
+//Sistema de Cadastro de pessoas físicas
+
+using System;
 using UC12.Classes;
 
+List<PessoaFisica> listaPf = new List<PessoaFisica>();
+string? opcao;
 
 Console.Clear();
-
-Utils.BarraCarregamento("Carregando o sistema");
-
-
-Console.Clear();
-
-
-Console.ForegroundColor = ConsoleColor.DarkYellow;
-
-Console.WriteLine(@"
-
------------------------------------------------------------------------------------------------
-|                              Bem vindo ao nosso sistema de Cadastro de                      |
-|                                   Pessoas Físicas e Jurídicas                               |
------------------------------------------------------------------------------------------------
-
-");
-
-Thread.Sleep(3000);
-Console.Clear();
-
 Console.ResetColor();
 
-string? opcao;
+Utils.BarraCarregamento("Inicializando");
+
+//Menu de boas vindas
+
+Console.WriteLine(@$"
+ ------------------------------------------------------------------
+ |            Seja bem vindo ao Sistema de Cadastro de            |
+ |                   Pessoas Físicas e Jurídicas                  |
+ ------------------------------------------------------------------
+");
+
+Thread.Sleep(2000);
+Console.Clear();
+
+
+//Menu opções Geral
 
 do
 {
-    Console.WriteLine(@"
-
------------------------------------------------------------------------------------------------
-|                              Escolha uma das opções abaixo:                                 |
-|---------------------------------------------------------------------------------------------|
-|                                     1 - Pessoa Física                                       |
-|                                     2 - Pessoa Jurídica                                     |
-|                                                                                             |
-|                                     3 - Sair do Sistema                                     |
------------------------------------------------------------------------------------------------
-
+    Console.WriteLine(@$"
+ ------------------------------------------------------------------
+ |                 Escolha uma opção abaixo:                      |
+ ------------------------------------------------------------------
+ |                   1 - Pessaoa Física                           |
+ |                   2 - Pessaoa Jurídica                         |
+ |                                                                |
+ |                   0 - Sair do Sistema                          |   
+ ------------------------------------------------------------------
 ");
     Console.ResetColor();
 
-
-
-
-
-    Console.WriteLine($"Digite uma das opções acima e tecle enter.");
-
-
+    Console.WriteLine($"Digite uma das opções acima e tecle 'Enter' !");
     opcao = Console.ReadLine();
-
-    //Console.WriteLine($"O texto digitado foi: {digitacao}");
+    // Console.WriteLine($" O texto digitado foi: {digitacao}");
 
     switch (opcao)
     {
         case "1":
-            Console.WriteLine($"Pessoa física seleciona");
 
-            //---------------------------------------------Pessoa Física---------------------------------------------------
-
-
-            //Método construtor
-
-            PessoaFisica novaPF = new PessoaFisica();
-            Endereco novoEndPf = new Endereco();
+            string? opcaoPf;
 
 
-            novaPF.nome = "Abílio Tavares Viana Filho";
-            novaPF.cpf = 6584123;
-            novaPF.dataNasc = new DateTime(1979, 01, 15);
+//Menu opções para pessoas físicas
 
-            novaPF.rendimento = 7000;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine(@$"
+ ------------------------------------------------------------------
+ |                 Escolha uma opção abaixo:                      |
+ ------------------------------------------------------------------
+ |                   1 - Cadastrar Pessoa Física                  |
+ |                   2 - Listar Pessoa Física                     |
+ |                                                                |
+ |                   0 - Volta ao menu anterior                   |   
+ ------------------------------------------------------------------
+");
 
-            novoEndPf.logradouro = "Rua Niteroi";
-            novoEndPf.numero = 180;
-            novoEndPf.complemento = "Senai Informática";
-            novoEndPf.endComercial = true;
-
-            novaPF.endereco = novoEndPf;
-
-            Console.WriteLine(@$"
-
-            Nome: {novaPF.nome}
-            CPF: {novaPF.cpf}
-            Data de nascimento: {novaPF.dataNasc}
-            Endereço: {novoEndPf.logradouro} , {novoEndPf.numero} , {novoEndPf.complemento} , {novoEndPf.endComercial}
-            Maior de idade: {novaPF.ValidarDataNasc(novaPF.dataNasc)}
-
-            ");
+                opcaoPf = Console.ReadLine();
 
 
+//Input de dados para pessoa física
 
 
-            //Console.WriteLine(novaPF.nome);
-            //Console.WriteLine(novaPF.cpf);
-            //Console.WriteLine(novaPF.dataNasc);
-            //Console.WriteLine(novaPF.endereco);
-            //Console.WriteLine(novaPF.rendimento);
+                switch (opcaoPf)
+                {
+                    case "1":
+                        //metodo construtor
+                        PessoaFisica novaPf = new PessoaFisica();
+                        Endereco novoEndPf = new Endereco();
 
-            //Concatenação
+                        Console.WriteLine($"Digite o nome da Pessoa Física, tecle 'ENTER' para continuar.");
+                        novaPf.nome = Console.ReadLine();
 
-            //Console.WriteLine("Nome do funcionário: " + novaPF.nome);
+                        bool dataValida;
+                        do
+                        {
+                            Console.WriteLine($"Digite a data de nascimento (Ex: DD/MM/AAAA), 'ENTER' para continuar.");
+                            string? dataNascimento = Console.ReadLine();
 
-            //Interpolação
-            //Console.WriteLine($"Nome do funcionário: {novaPF.nome} - CPF: {novaPF.cpf} - Data de Nascimento: {novaPF.dataNasc} - Endereço: {novaPF.endereco} - Rendimento: {novaPF.rendimento}");
+                            dataValida = novaPf.ValidarDataNasc(dataNascimento);
 
-            //novaPF.CalcularImposto(novaPF.rendimento);
-            //Console.WriteLine(novaPF.CalcularImposto(novaPF.rendimento));
-
-            //Verificação de idade
-
-            //DateTime datNascimento = new DateTime(2015,12,06);
-            //Console.WriteLine(novaPF.ValidadarDataNasc(dat1));
-
-
-            //DateTime date1 = DateTime.Now;
-            //DateTime date2 = DateTime.UtcNow;
-            //DateTime date3 = DateTime.Today;
+                            if (dataValida == true)
+                            {
+                                DateTime.TryParse(dataNascimento, out DateTime dataConvertida);
+                                novaPf.dataNasc = dataConvertida;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Erro; Data inválida, digite um valor válido. Tecle Enter pra continuar");
+                                Console.ReadLine();
+                            }
 
 
+                        } while (dataValida == false);
 
-            //Console.WriteLine(date1);
-            //Console.WriteLine(date2);
-            //Console.WriteLine(date3);
 
-            //var dataResult = date3 - datNascimento;
+                        Console.WriteLine($"Digite o CPF da Pessoa Física, tecle 'ENTER' para continuar.");
+                        novaPf.cpf = Console.ReadLine();
 
-            //WriteLine(dataResult.TotalDays/365);
+                        Console.WriteLine($"Digite o Rendimento da Pessoa Física, tecle 'ENTER' para continuar.");
+                        novaPf.rendimento = float.Parse(Console.ReadLine());
 
-            //Console.WriteLine(novaPF.ValidadarDataNasc(datNascimento));
-            //Console.WriteLine(novaPF.ValidarDataNasc("26-02-2010"));
+                        Console.WriteLine($"Digite o nome da rua da Pessoa Física, tecle 'ENTER' para continuar.");
+                        novoEndPf.logradouro = Console.ReadLine();
 
-            Console.WriteLine($"Tecle 'Enter' para continuar.");
-            Console.ReadLine();
+                        Console.WriteLine($"Digite o numero do endereço da Pessoa Física, tecle 'ENTER' para continuar.");
+                        novoEndPf.numero = int.Parse(Console.ReadLine());
 
+                        Console.WriteLine($"Digite o complemento, tecle 'ENTER' para continuar.");
+                        novoEndPf.complemento = Console.ReadLine();
+
+                        Console.WriteLine($"Este endereço é Comercial? Digite S ou N ?");
+                        string endCom = Console.ReadLine().ToUpper();
+
+                        if (endCom == "S")
+                        {
+                            novoEndPf.endComercial = true;
+                        }
+                        else
+                        {
+                            novoEndPf.endComercial = false;
+                        }
+
+                        novaPf.endereco = novoEndPf;
+
+                        listaPf.Add(novaPf);
+
+                        Console.WriteLine($"Objeto adicionado na lista!");
+                        Thread.Sleep(3000);
+
+                        break;
+
+                    case "2":
+
+                        Console.Clear();
+                        if (listaPf.Count > 0)
+                        {
+
+                            foreach (PessoaFisica cadaPessoa in listaPf)
+                            {
+                                Console.WriteLine(@$"
+                            
+                            NOME: {cadaPessoa.nome}
+                            LOGRADOURO: {cadaPessoa.endereco.logradouro}, NUMERO {cadaPessoa.endereco.numero}, COMPLEM. {cadaPessoa.endereco.complemento}
+                            RENDIMENTO MENSAL.: {cadaPessoa.rendimento.ToString("C")}
+                            IMPOSTO A PAGAR: {cadaPessoa.CalcularImposto(cadaPessoa.rendimento).ToString("C")}
+                            DATA NASC.: {cadaPessoa.dataNasc.ToString("d")}
+                            ");
+
+                                Console.WriteLine($"Tecle Enter para continuar a lista");
+                                Console.ReadLine();
+                                Console.Clear();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Lista vazia, cadastre uma nova Pessoa Física.");
+                            Thread.Sleep(4000);
+                            Console.Clear();
+                        }
+
+                        break;
+
+                    case "0":
+                        Console.WriteLine($"Voltando ao menu anterior");
+                        Thread.Sleep(2000);
+                        break;
+
+                    default:
+                        Console.WriteLine($"Valor não encontrado, digite um valor correto (1, 2 ou 0)");
+                        Thread.Sleep(4000);
+                        break;
+                }
+
+
+            } while (opcaoPf != "0");
+
+
+
+            
             break;
+ // Menu opções para pessoa jurídica
 
         case "2":
             Console.WriteLine($"Pessoa Jurídica Selecionada");
-
-            //----------------------------------------Pessoa Jurídica----------------------------------------------------------------------
-
-
+           
             PessoaJuridica novaPj = new PessoaJuridica();
             Endereco novoEndPj = new Endereco();
 
-            novaPj.nome = "Abílio Viana Corps";
-            novaPj.cnpj = "42.653.716/0001-38";
-            novaPj.rendimento = 200.000f;
+
+
+
+
+            novaPj.razaoSocial = "Viana Corps";
+            novaPj.cnpj = "31.876.411/0001-79";
+            novaPj.rendimento = 200000.00f;
 
             novoEndPj.logradouro = "Tv. Colômbia";
             novoEndPj.numero = 2872;
-            novoEndPj.complemento = "Empresa Senai Informática";
+            novoEndPj.complemento = "Sala 100";
             novoEndPj.endComercial = true;
 
             novaPj.endereco = novoEndPj;
 
             Console.WriteLine(@$"
-
-            Nome da razão social: {novaPj.nome}
-            CNPJ: {novaPj.cnpj} - Válido: {novaPj.ValidarCnpj(novaPj.cnpj)}
-            Endereço: {novoEndPj.logradouro} , {novoEndPj.numero}
-            Complemento: {novoEndPj.complemento} 
-            Endereço comercial: {novoEndPj.endComercial}
+            Nome da Razão Social: {novaPj.razaoSocial}
+            Endereço: {novoEndPj.logradouro}, {novoEndPj.numero}
+            CNPJ: {novaPj.cnpj} - Valido: {novaPj.ValidarCnpj(novaPj.cnpj)}
             ");
 
-
-            //Console.WriteLine(novaPj.ValidarCnpj("42.653.716/0001-38"));
-
-
-
-
-
-            //float x = novaPj.rendimento = 16600.3f;
-            //Console.WriteLine(novaPj.CalcularImposto(x));
-
-            //float impostoPagar = novaPJ.CalcularImposto(10000.5f);
-            //Console.WriteLine($ "O imposto a pagar será de: {impostoPagar: 0.00}");
-            //Console.WriteLine(impostoPagar.ToString("C"));
-
-
-            Console.WriteLine($"Tecle 'Enter' para continuar.");
+           
+            Console.WriteLine($"Tecle 'Enter' para continuar!");
             Console.ReadLine();
-
             break;
-
 
         case "0":
-            Console.WriteLine($"Saindo do sistema");
+            
             break;
+
+
         default:
-            Console.WriteLine($"Opção não encontrada. Digite o valor correto");
+            Console.WriteLine($"Valor não encontrado, digite um valor correto (1, 2 ou 0)");
             Thread.Sleep(4000);
             break;
     }
 
-
-    /* if (opcao == "1")
-    {
-        Console.WriteLine($"Pessoa física seleciona");
-    }
-
-    else if (opcao == "2")
-    {
-        Console.WriteLine($"Pessoa Jurídica Selecionada");
-    }
-
-    else if (opcao == "3")
-    {
-        Console.WriteLine($"Saindo do sistema");
-    }
-    else
-    {
-        Console.WriteLine($"Opção não encontrada");
-    }
-
-    */
-
-
-
-
     Console.Clear();
-
-
 } while (opcao != "0");
-
 
 Utils.BarraCarregamento("Finalizando");
 
 //Console.Clear();
-
-
-
-
-
 
 
 

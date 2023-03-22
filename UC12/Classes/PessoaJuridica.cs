@@ -16,82 +16,67 @@ using UC12.Interfaces;
 namespace UC12.Classes
 {
     public class PessoaJuridica : Pessoa, IPessoaJuridica
-
-
     {
         public string? cnpj { get; set; }
-
         public string? razaoSocial { get; set; }
 
         public override float CalcularImposto(float rendimento)
         {
             if (rendimento <= 3000)
             {
-                float resultado = (rendimento / 100) * 3;
+                float resultado = rendimento * 0.03f;
                 return resultado;
 
-            }
-            else if (rendimento > 3000 && rendimento <= 6000)
+            } else if (rendimento > 3000 && rendimento <= 6000)
             {
-
-                float resultado = (rendimento / 100) * 5;
+                float resultado = rendimento * 0.05f;
                 return resultado;
 
-            }
-            else if (rendimento > 6000 && rendimento <= 10000)
+            } else if (rendimento > 6000 && rendimento <= 10000)
             {
-
-                float resultado = (rendimento / 100) * 7;
+                float resultado = rendimento * 0.07f;
                 return resultado;
 
-
-            }
-            else
+            } else 
             {
-
-                float resultado = (rendimento / 100) * 9;
+                float resultado = rendimento * 0.09f;
                 return resultado;
-
             }
         }
 
         public bool ValidarCnpj(string cnpj)
-
-        /* Exemplos
-
-        18 caracteres = 42.653.716/0001-38
-        14 caracteres = 49240663000172 */
-
+            // fonte: https://www.4devs.com.br/
+            // 18  CARACTERES - 31.876.411/0001-79
+            // 14 CARACTERES - 27379542000173
         {
-
-            bool retornoCnpjValido = Regex.IsMatch(cnpj, @"^(\d{14})|(\d{2}.\d{3}.\d{3}/\d{4}-\d{2}$)");
-
-            if (retornoCnpjValido)
+            bool retornoCnpjValido14 = Regex.IsMatch(cnpj, @"^(\d{14})$"); 
+            
+            if (retornoCnpjValido14)
             {
-
                 string subStringCnpj14 = cnpj.Substring(8, 4);
 
                 if (subStringCnpj14 == "0001")
                 {
                     return true;
                 }
+
             }
 
-            bool retornoCnpjValido18 = Regex.IsMatch(cnpj, @"^(\d{18})|(\d{2}.\d{3}.\d{3}/\d{4}-\d{2}$)");
-
+            
+            bool retornoCnpjValido18 = Regex.IsMatch(cnpj, @"^(\d{18}|\d{2}.\d{3}.\d{3}/\d{4}-\d{2})$"); 
+            
             if (retornoCnpjValido18)
             {
-                string subStringCnpj18 = cnpj.Substring(11, 4);
+                   string subStringCnpj18 = cnpj.Substring(11, 4);
 
                 if (subStringCnpj18 == "0001")
                 {
                     return true;
                 }
             }
-
-
-
-            return false;
+         
+        return false;
+        
         }
     }
 }
